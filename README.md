@@ -4,7 +4,9 @@ A few basic examples illustrating the use of models specified using PFA (Portabl
 The examples in the repo are intended to illustrate how easy it is to create your own PFA scoring solutions using available open source implementations of PFA. 
 
 Examples include:
- - CSV scoring
+
+### CSV scoring
+     python csv_example.py tests/models/example.pfa tests/data/iris.csv
 
 References:
 * http://dmg.org/pfa/index.html
