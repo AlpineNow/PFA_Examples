@@ -6,7 +6,12 @@ The examples in the repo are intended to illustrate how easy it is to create you
 Examples include:
 
 ### CSV scoring
-     python csv_example.py tests/models/example.pfa tests/data/iris.csv
+     python csv_example.py tests/models/iris_lor_model.pfa tests/data/iris.csv
+     
+# Test resources
+* **iris_lor_model.pfa** - A PFA representation of a logisitic regression model trained on the well known Iris data set. This PFA doc can be used on conjunction with the included version of the iris.csv dataset to perform scoring experiments.
+* **iris.csv** - A copy of the well known Iris data set, with labels removed.
 
 References:
 * http://dmg.org/pfa/index.html
+* https://archive.ics.uci.edu/ml/datasets/iris
