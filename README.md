@@ -15,3 +15,4 @@ Examples include:
 References:
 * http://dmg.org/pfa/index.html
 * https://archive.ics.uci.edu/ml/datasets/iris
+* https://www.slideshare.net/alpine_data/big-datala-spracklenfinal
