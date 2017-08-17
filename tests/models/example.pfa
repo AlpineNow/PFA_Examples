@@ -1,0 +1,293 @@
+{
+  "input": {
+    "name": "input",
+    "fields": [
+      {
+        "name": "Sepal_length",
+        "type": "double"
+      },
+      {
+        "name": "Sepal_width",
+        "type": "double"
+      },
+      {
+        "name": "Petal_length",
+        "type": "double"
+      },
+      {
+        "name": "Petal_width",
+        "type": "double"
+      }
+    ],
+    "type": "record"
+  },
+  "output": {
+    "name": "output",
+    "fields": [
+      {
+        "name": "PRED",
+        "type": "string"
+      },
+      {
+        "name": "CONF",
+        "type": "double"
+      },
+      {
+        "name": "INFO",
+        "type": {
+          "values": "double",
+          "type": "map"
+        }
+      }
+    ],
+    "type": "record"
+  },
+  "cells": {
+    "model": {
+      "type": {
+        "items": {
+          "name": "LinearModel",
+          "fields": [
+            {
+              "name": "coeff",
+              "type": {
+                "items": "double",
+                "type": "array"
+              }
+            },
+            {
+              "name": "const",
+              "type": "double"
+            }
+          ],
+          "type": "record"
+        },
+        "type": "array"
+      },
+      "init": [
+        {
+          "coeff": [
+            -7.851311943521593,
+            11.51490829930835,
+            -6.152939362724193,
+            -13.17336610804384
+          ],
+          "const": 49.37269101884991
+        },
+        {
+          "coeff": [
+            0.43268755699041955,
+            3.5779680773435545,
+            -2.9349003034242584,
+            -12.0425946817358
+          ],
+          "const": 21.520481599038607
+        }
+      ]
+    },
+    "dependentValues": {
+      "type": {
+        "items": "string",
+        "type": "array"
+      },
+      "init": [
+        "Iris-setosa",
+        "Iris-versicolor",
+        "Iris-virginica"
+      ]
+    }
+  },
+  "action": [
+    {
+      "let": {
+        "vector": {
+          "new": [
+            "input.Sepal_length",
+            "input.Sepal_width",
+            "input.Petal_length",
+            "input.Petal_width"
+          ],
+          "type": {
+            "items": "double",
+            "type": "array"
+          }
+        }
+      }
+    },
+    {
+      "let": {
+        "rawConfs": {
+          "a.append": [
+            {
+              "a.map": [
+                {
+                  "cell": "model"
+                },
+                {
+                  "params": [
+                    {
+                      "linearModel": "LinearModel"
+                    }
+                  ],
+                  "ret": "double",
+                  "do": {
+                    "m.exp": [
+                      {
+                        "model.reg.linear": [
+                          "vector",
+                          "linearModel"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            1.0
+          ]
+        }
+      }
+    },
+    {
+      "let": {
+        "sum": {
+          "a.sum": "rawConfs"
+        }
+      }
+    },
+    {
+      "let": {
+        "normalizedConfs": {
+          "a.map": [
+            "rawConfs",
+            {
+              "params": [
+                {
+                  "x": "double"
+                }
+              ],
+              "ret": "double",
+              "do": {
+                "/": [
+                  "x",
+                  "sum"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "new": {
+        "PRED": {
+          "attr": {
+            "cell": "dependentValues"
+          },
+          "path": [
+            {
+              "a.argmax": [
+                "rawConfs"
+              ]
+            }
+          ]
+        },
+        "CONF": {
+          "a.max": [
+            "normalizedConfs"
+          ]
+        },
+        "INFO": {
+          "u.zipDoubleMap": [
+            {
+              "cell": "dependentValues"
+            },
+            "normalizedConfs"
+          ]
+        }
+      },
+      "type": {
+        "name": "output",
+        "fields": [
+          {
+            "name": "PRED",
+            "type": "string"
+          },
+          {
+            "name": "CONF",
+            "type": "double"
+          },
+          {
+            "name": "INFO",
+            "type": {
+              "values": "double",
+              "type": "map"
+            }
+          }
+        ],
+        "type": "record"
+      }
+    }
+  ],
+  "fcns": {
+    "zipDoubleMap": {
+      "params": [
+        {
+          "keys": {
+            "items": "string",
+            "type": "array"
+          }
+        },
+        {
+          "values": {
+            "items": "double",
+            "type": "array"
+          }
+        }
+      ],
+      "ret": {
+        "values": "double",
+        "type": "map"
+      },
+      "do": [
+        {
+          "map.join": [
+            {
+              "a.zipmap": [
+                "keys",
+                "values",
+                {
+                  "params": [
+                    {
+                      "k": "string"
+                    },
+                    {
+                      "v": "double"
+                    }
+                  ],
+                  "ret": {
+                    "values": "double",
+                    "type": "map"
+                  },
+                  "do": {
+                    "map.add": [
+                      {
+                        "type": {
+                          "values": "double",
+                          "type": "map"
+                        },
+                        "value": {}
+                      },
+                      "k",
+                      "v"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
