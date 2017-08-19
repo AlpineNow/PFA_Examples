@@ -1,0 +1,79 @@
+<h1><strong>PFA Scoring Engine</strong></h1>
+<h3><strong>Scoring Engine APIs</strong></h3>
+<table style="height: 40px;" border="1" width="579">
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Operation</strong></td>
+<td style="text-align: center;"><strong>Endpoint</strong></td>
+<td style="text-align: center;"><strong>HTTP Method</strong></td>
+</tr>
+<tr>
+<td>List APIs</td>
+<td>/alpine</td>
+<td style="text-align: center;">GET</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3><strong>Model Deployment REST API Endpoints</strong></h3>
+<table style="height: 40px;" border="1" width="579">
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Operation</strong></td>
+<td style="text-align: center;"><strong>Endpoint</strong></td>
+<td style="text-align: center;"><strong>HTTP Method</strong></td>
+</tr>
+<tr>
+<td>Get all deployed models</td>
+<td>/alpine/deploy</td>
+<td style="text-align: center;">GET</td>
+</tr>
+<tr>
+<td>Deploy model</td>
+<td>/alpine/deploy/<em>{model_name}</em></td>
+<td style="text-align: center;">PUT</td>
+</tr>
+<tr>
+<td>Download model</td>
+<td>/alpine/deploy/<em>{model_name}</em></td>
+<td style="text-align: center;">&nbsp;GET</td>
+</tr>
+<tr>
+<td>Delete model</td>
+<td>/alpine/deploy/<em>{model_name}</em></td>
+<td style="text-align: center;">&nbsp;DELETE</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3><strong>Model Scoring REST API Endpoints</strong></h3>
+<table style="height: 40px;" border="1" width="579">
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Operation</strong></td>
+<td style="text-align: center;"><strong>Endpoint</strong></td>
+<td style="text-align: center;"><strong>HTTP Method</strong></td>
+</tr>
+<tr>
+<td>Make prediction</td>
+<td>/alpine/score/<em>{model_name}</em></td>
+<td style="text-align: center;">POST</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3><strong>Model Metric REST API Endpoints</strong></h3>
+<table style="height: 40px;" border="1" width="579">
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Operation</strong></td>
+<td style="text-align: center;"><strong>Endpoint</strong></td>
+<td style="text-align: center;"><strong>HTTP Method</strong></td>
+</tr>
+<tr>
+<td>Get model metrics</td>
+<td>/alpine/metrics/<em>{model_name}</em></td>
+<td style="text-align: center;">GET</td>
+</tr>
+</tbody>
+</table>
