@@ -7,6 +7,9 @@ Examples include:
 
 ### CSV scoring
      python csv_example.py tests/models/iris_lor_model.pfa tests/data/iris.csv
+    
+### RESTful scoring
+     python web_example.py 9092
      
 # Test resources
 * **iris_lor_model.pfa** - A PFA representation of a logisitic regression model trained on the well known Iris data set. This PFA doc can be used on conjunction with the included version of the iris.csv dataset to perform scoring experiments.
