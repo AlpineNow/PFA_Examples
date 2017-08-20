@@ -11,6 +11,18 @@ Examples include:
 ### RESTful scoring
      python web_example.py 9092
      
+#### List deployed models
+     curl http://localhost:9092/alpine/deploy
+#### Upload PFA model
+     curl --upload-file tests/models/iris_lor_model.pfa http://localhost:9092/alpine/deploy/my_first_model
+#### Download PFA model
+     curl http://localhost:9092/alpine/deploy/my_first_model
+#### Score a single sample
+     curl --data '{"Sepal_length" : "1.0","Sepal_width" : "1.0", "Petal_length" : "1.0","Petal_width" : "1.0"}' http://localhost:9092/alpine/score/my_first_model
+#### Get model metrics
+     curl http://localhost:9092/alpine/metrics/my_first_model
+     
+     
 # Test resources
 * **iris_lor_model.pfa** - A PFA representation of a logisitic regression model trained on the well known Iris data set. This PFA doc can be used on conjunction with the included version of the iris.csv dataset to perform scoring experiments.
 * **iris.csv** - A copy of the well known Iris data set, with labels removed.
