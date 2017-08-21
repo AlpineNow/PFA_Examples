@@ -6,9 +6,13 @@ The examples in the repo are intended to illustrate how easy it is to create you
 Examples include:
 
 ### CSV scoring
+Simple example for scoring data contained in a CSV file. Command-line arguments provide the location of the PFA document to be used, and the location of the CSV file to the scored, as illustrated below.
+
      python csv_example.py tests/models/iris_lor_model.pfa tests/data/iris.csv
     
 ### RESTful scoring
+Simple PFA scoring engine exposing a RESTful interface. Models and associated stats are persisted to a DB, such that state is maintained across reboots. Command-line argument specifies the chosen port, as illustrated below. 
+
      python web_example.py 9092
      
 #### List deployed models
