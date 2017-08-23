@@ -29,6 +29,8 @@ Simple PFA scoring engine exposing a RESTful interface. Models and associated st
 ### Kafka scoring
 Simple PFA scoring engine, consuming from a specified Kafka topic, and publishing results to a specified topic. Command-line arguments specify the IP and port of the Kafka broker, the topic to consume the topic to publish and the PFA document to leverage, as illustrated below.
 
+    python kafka_example.py 54.183.55.00:9092 tests/models/iris_lor_model.pfa input_topic results_topic
+
 
 # Test resources
 * **iris_lor_model.pfa** - A PFA representation of a logisitic regression model trained on the well known Iris data set. This PFA doc can be used on conjunction with the included version of the iris.csv dataset to perform scoring experiments.
