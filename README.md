@@ -31,6 +31,7 @@ Simple PFA scoring engine, consuming from a specified Kafka topic, and publishin
 
     python kafka_example.py 54.183.55.00:9092 tests/models/iris_lor_model.pfa input_topic results_topic
 
+### PySpark scoring
 
 # Test resources
 * **iris_lor_model.pfa** - A PFA representation of a logisitic regression model trained on the well known Iris data set. This PFA doc can be used on conjunction with the included version of the iris.csv dataset to perform scoring experiments.
