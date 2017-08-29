@@ -34,7 +34,7 @@ Simple PFA scoring engine, consuming from a specified Kafka topic, and publishin
 ### PySpark scoring
 Simple PFA scoring engine using PySpark. In this example, a CSV file, located on HDFS, is scored using a PFA document located on the client node, as illustrated below. 
 
-    spark-submit --packages com.databricks:spark-csv_2.11:1.5.0 ./pyspark_example.py tests/models/iris_lor_model.pfa hdfs:///user/sprack/data/iris.csv 
+    spark-submit --master yarn-client --packages com.databricks:spark-csv_2.11:1.5.0 ./pyspark_example.py tests/models/iris_lor_model.pfa hdfs:///user/sprack/data/iris.csv 
 
 # Test resources
 * **iris_lor_model.pfa** - A PFA representation of a logisitic regression model trained on the well known Iris data set. This PFA doc can be used on conjunction with the included version of the iris.csv dataset to perform scoring experiments.
